@@ -20,6 +20,7 @@ plugins {
 version "0.1"
 group "canoon"
 
+apply plugin:"application"
 apply plugin:"maven"
 apply plugin:"eclipse"
 apply plugin:"idea"
@@ -142,6 +143,11 @@ task migrateDevelopment {
             password = 'lionvstuna'
         }
     }
+}
+
+task stage {
+    dependsOn build
+    description "Build application for staging"
 }
 
 migrateDevelopment.finalizedBy flywayMigrate
