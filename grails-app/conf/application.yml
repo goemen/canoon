@@ -109,10 +109,10 @@ environments:
             url: jdbc:h2:mem:testDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
     production:
         dataSource:
-            username: admin
-            password: lionvstuna
+            username: htjlxhjw29vc4538
+            password: jdtzx096f8bwnvw7
             dbCreate: none
-            url: jdbc:mysql://canoon:3306/canoon
+            url: jdbc:mysql://if0ck476y7axojpg.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/heroku_c6f9e310c726910
             properties:
                 jmxEnabled: true
                 initialSize: 5

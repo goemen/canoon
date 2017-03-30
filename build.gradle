@@ -134,7 +134,7 @@ task buildMysqlImage(type: Exec) {
 }
 
 task migrateDevelopment {
-    description "Running production database migration"
+    description "Running development database migration"
     doFirst {
         flyway {
             url = 'jdbc:mysql://192.168.99.100:3306/canoon'
@@ -144,7 +144,19 @@ task migrateDevelopment {
     }
 }
 
-task stage(dependsOn: ['build', 'clean'])
+task migrateProduction {
+    description "Running production database migration"
+    doFirst {
+        flyway {
+            url = 'jdbc:mysql://if0ck476y7axojpg.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/lkewpl48wp2bflyj'
+            user = 'htjlxhjw29vc4538'
+            password = 'jdtzx096f8bwnvw7'
+        }
+    }
+}
+
+task stage(dependsOn: ['build', 'clean', 'migrateProduction'])
 build.mustRunAfter clean
+clean.mustRunAfter migrateProduction
 
 migrateDevelopment.finalizedBy flywayMigrate
