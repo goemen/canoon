@@ -1,3 +1,9 @@
+deployment:
+  staging:
+    branch: master
+    heroku:
+      appname: canoon-api
+
 machine:
   java:
     version: openjdk7
