@@ -144,4 +144,7 @@ task migrateDevelopment {
     }
 }
 
+task stage(dependsOn: ['build', 'clean'])
+build.mustRunAfter clean
+
 migrateDevelopment.finalizedBy flywayMigrate
