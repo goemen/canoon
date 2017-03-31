@@ -1,1 +1,1 @@
-web: cd build; java ${JAVA_OPTS} -jar app/application.jar $@
+web: java $JAVA_OPTS -jar app.jar
