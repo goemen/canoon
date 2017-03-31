@@ -81,33 +81,19 @@ String getMysqlDockerImageName() {
     "canoon-mysql-db"
 }
 
-task buildDockerImage(type:Exec) {
-    dependsOn build
-    group = 'docker'
+task buildDockerImage() {
     description = 'Build a docker image'
-    commandLine 'docker', 'build', '-f', 'build/docker/Dockerfile', '-t', "${dockerImageName}", 'build/docker'
 
     doFirst {
         println ">> Creating image: ${dockerImageName}"
         /* copy the generate war file to /build/docker/app */
         copy {
             from war.archivePath
-            into 'build/docker/app/'
+            into 'build/app/'
         }
-        /* copy artifacts from src/main/docker/app into the build/docker/app */
-        copy {
-            from 'src/main/docker/app/'
-            into 'build/docker/app'
-        }
-        /* copy Dockerfile from src/main/docker into the build/docker */
-        copy {
-            from('src/main/docker/') {
-                include 'Dockerfile'
-            }
-            into 'build/docker'
-        }
+
         /* rename war file to application.jar */
-        file("build/docker/app/${war.archiveName}").renameTo("build/docker/app/application.jar")
+        file("build/app/${war.archiveName}").renameTo("build/app/application.jar")
     }
 }
 
@@ -178,7 +164,7 @@ task copyToLib(type: Copy) {
     }
 }
 
-stage.dependsOn(copyToLib)
+stage.dependsOn(buildDockerImage)
 
 stage.finalizedBy migrateProduction
 migrateProduction.finalizedBy flywayMigrate
