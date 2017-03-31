@@ -148,9 +148,9 @@ task migrateProduction {
     description "Running production database migration"
     doFirst {
         flyway {
-            url = 'jdbc:mysql://if0ck476y7axojpg.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/lkewpl48wp2bflyj'
-            user = 'htjlxhjw29vc4538'
-            password = 'jdtzx096f8bwnvw7'
+            url = 'jdbc:mysql://if0ck476y7axojpg.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/psbguumu4f0sup75'
+            user = 'edfylo5lxbmld8ag'
+            password = 'j39zofnptr1n8z67'
         }
     }
 }
