@@ -150,8 +150,8 @@ task wrapper(type: Wrapper) {
     gradleVersion = gradleWrapperVersion
 }
 
-task stage(type: Copy, dependsOn: [clean, build]) {
-    from jar.archivePath
+task stage(type: Copy, dependsOn: [clean, war]) {
+    from war.archivePath
     into project.rootDir
     rename {
         'app.jar'
@@ -164,6 +164,6 @@ clean << {
     project.file('app.jar').delete()
 }
 
-stage.finalizedBy migrateProduction
+// stage.finalizedBy migrateProduction
 migrateProduction.finalizedBy flywayMigrate
 migrateDevelopment.finalizedBy flywayMigrate
