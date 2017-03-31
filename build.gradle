@@ -155,6 +155,9 @@ task migrateProduction {
     }
 }
 
+task wrapper(type: Wrapper) {
+    gradleVersion = gradleWrapperVersion
+}
 
 task stage() {
     dependsOn clean, war
