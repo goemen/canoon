@@ -67,6 +67,11 @@ bootRun {
     addResources = true
 }
 
+jar {
+    baseName = 'canoon'
+    version = '0.1.0'
+}
+
 
 assets {
     minifyJs = true
