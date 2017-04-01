@@ -1,1 +1,1 @@
-web: java -Dgrails.env=prod -jar server/webapp-runner.jar --port $PORT app.war
+java ${JAVA_OPTS} -Dserver.port=${PORT} -jar app.jar
