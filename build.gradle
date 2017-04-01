@@ -60,6 +60,7 @@ dependencies {
     compile "org.grails.plugins:spring-security-rest:2.0.0.M2"
     compile 'org.ajbrown:NameMachine:0.1.1'
     compile "org.flywaydb:flyway-core:4.1.2"
+    provided "org.springframework.boot:spring-boot-starter-tomcat"
 }
 
 bootRun {
@@ -150,19 +151,17 @@ task wrapper(type: Wrapper) {
     gradleVersion = gradleWrapperVersion
 }
 
-task stage(type: Copy, dependsOn: [clean, war]) {
-    from war.archivePath
-    into project.rootDir
-    rename {
-        'app.war'
-    }
+task stage() {
+    dependsOn clean, war
 }
 
-stage.mustRunAfter(clean)
-
-clean << {
-    project.file('app.war').delete()
+tasks.stage.doLast() {
+    delete fileTree(dir: "build/distributions")
+    delete fileTree(dir: "build/assetCompile")
+    delete fileTree(dir: "build/distributions")
+    delete fileTree(dir: "build/libs", exclude: "*.war")
 }
+war.mustRunAfter clean
 
 stage.finalizedBy migrateProduction
 migrateProduction.finalizedBy flywayMigrate
