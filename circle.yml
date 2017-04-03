@@ -1,8 +1,8 @@
 deployment:
-  production:
+  development:
     branch: master
     heroku:
-      appname: canoon-api
+      appname: canoon
 
 machine:
   java:
