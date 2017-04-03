@@ -5,7 +5,8 @@ grails.plugin.springsecurity.userLookup.userDomainClassName = 'canoon.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'canoon.UserRole'
 grails.plugin.springsecurity.authority.className = 'canoon.Role'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
-	[pattern: '/',               access: ['permitAll']],
+    [pattern: '/api/*',          access: ['permitAll']],
+    [pattern: '/',               access: ['permitAll']],
 	[pattern: '/error',          access: ['permitAll']],
 	[pattern: '/index',          access: ['permitAll']],
 	[pattern: '/index.gsp',      access: ['permitAll']],

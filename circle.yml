@@ -4,6 +4,10 @@ deployment:
     heroku:
       appname: canoon
 
+notify:
+  webhooks:
+    - url: https://hooks.slack.com/services/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
+
 machine:
   java:
     version: openjdk7
