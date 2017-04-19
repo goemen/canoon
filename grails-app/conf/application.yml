@@ -26,6 +26,8 @@ endpoints:
 
 ---
 grails:
+    cors:
+        enabled: true
     mime:
         disable:
             accept:
@@ -76,6 +78,16 @@ grails:
                 scriptlets: html
                 taglib: none
                 staticparts: none
+    plugin:
+        springsecurity:
+            oauth2:
+                providers:
+                    google:
+                        api_key: 'AIzaSyAFO6NyXis4Cvfy5Pulpktak_bxvFYu9ao'
+                        api_secret: '_r2lOt0qPccf6PcLcsjU913F'
+                active: true
+                registration:
+                    roleNames: ['ROLE_USER']
 endpoints:
     jmx:
         unique-names: true
@@ -99,10 +111,10 @@ dataSource:
 environments:
     development:
         dataSource:
-            username: admin
-            password: lionvstuna
-            dbCreate: none
-            url: jdbc:mysql://canoon:3306/canoon
+            username: root
+            password:
+            dbCreate: create-drop
+            url: jdbc:mysql://localhost:3306/canoon
     test:
         dataSource:
             dbCreate: update
